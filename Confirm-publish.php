@@ -34,18 +34,43 @@ class cf_confirm_publish {
         add_action('admin_footer', array( $this, 'confirm' ) );
     }
     function confirm() {
+        //get the messages
+        $messages = $this->messages();
         echo '
-            <script type="text/javascript"><!--
-            var publish = document.getElementById("publish");
-            if (publish !== null) publish.onclick = function(){
-                return confirm("'.$this->message().'");
-            };
-         // --></script>';
+
+            <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                var message = "'.$this->message() .' ";
+                var publish = document.getElementById( "publish" );
+                //check for featured image, if none is set add featured image warning
+                if ($.find( "#postimagediv" ).length !== 0) {
+                    if ($( "#postimagediv" ).find( "img" ).length===0 ) {
+                        var message = message + "'.$messages[ 'featured'].'";
+                    }
+                }
+                if (publish !== null) publish.onclick = function(){
+                    return confirm( message );
+                };
+            });
+         </script>';
     }
 
     function message() {
         $message = 'Are you sure you want to publish?';
         return $message;
+    }
+
+    function messages() {
+        $messages = array(
+            'default'   => 'Are you sure you want to publish?',
+            'excerpt'   => 'No excerpt is set!',
+            'featured'  => 'No featured image is set!'
+        );
+        return $messages;
+    }
+
+    function check_feature_img() {
+
     }
 
 
