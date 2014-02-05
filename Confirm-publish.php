@@ -48,6 +48,13 @@ class cf_confirm_publish {
                         var message = message + "'.$messages[ 'featured'].'";
                     }
                 }
+                //check for excerpt, if not set add excerpt warning
+                if ($.find( "#excerpt" ).length !== 0) {
+                    if ($( "#excerpt" ).val().length=== 0) {
+                        var message = message + " '.$messages['excerpt'].'";
+                    }
+                }
+                //output the message if post is not published
                 if (publish !== null) publish.onclick = function(){
                     return confirm( message );
                 };
