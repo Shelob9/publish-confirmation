@@ -28,19 +28,29 @@ License: GPL2
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+class cf_confirm_publish {
+
+    function __construct() {
+        add_action('admin_footer', array( $this, 'confirm' ) );
+    }
+    function confirm() {
+        echo '
+            <script type="text/javascript"><!--
+            var publish = document.getElementById("publish");
+            if (publish !== null) publish.onclick = function(){
+                return confirm("'.$this->message().'");
+            };
+         // --></script>';
+    }
+
+    function message() {
+        $message = 'Are you sure you want to publish?';
+        return $message;
+    }
 
 
-$c_message = 'Are you SURE you want to publish this post?'; // This is the confirmation message that will appear.
-function confirm_publish(){
-	global $c_message;
-	echo '
-<script type="text/javascript"><!--
-var publish = document.getElementById("publish");
-if (publish !== null) publish.onclick = function(){
-	return confirm("'.$c_message.'");
-};
-// --></script>';
 }
 
-add_action('admin_footer', 'confirm_publish');
+new cf_confirm_publish();
+
 ?>
