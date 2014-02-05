@@ -40,7 +40,7 @@ class cf_confirm_publish {
 
             <script type="text/javascript">
             jQuery(document).ready(function($) {
-                var message = "'.$this->message() .' ";
+                var message = "'.$messages[ 'default'] .' ";
                 var publish = document.getElementById( "publish" );
                 //check for featured image, if none is set add featured image warning
                 if ($.find( "#postimagediv" ).length !== 0) {
@@ -60,11 +60,6 @@ class cf_confirm_publish {
                 };
             });
          </script>';
-    }
-
-    function message() {
-        $message = 'Are you sure you want to publish?';
-        return $message;
     }
 
     function messages() {
