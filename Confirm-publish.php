@@ -45,13 +45,13 @@ class cf_confirm_publish {
                 //check for featured image, if none is set add featured image warning
                 if ($.find( "#postimagediv" ).length !== 0) {
                     if ($( "#postimagediv" ).find( "img" ).length===0 ) {
-                        var message = message + "'.$messages[ 'featured'].'";
+                        var message = message + "\n\n'.$messages[ 'featured'].'";
                     }
                 }
                 //check for excerpt, if not set add excerpt warning
                 if ($.find( "#excerpt" ).length !== 0) {
                     if ($( "#excerpt" ).val().length=== 0) {
-                        var message = message + " '.$messages['excerpt'].'";
+                        var message = message + "\n\n'.$messages['excerpt'].'";
                     }
                 }
                 //output the message if post is not published
