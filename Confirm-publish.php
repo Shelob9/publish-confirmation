@@ -7,9 +7,6 @@ Version: 1.0
 Author: Tristan Higbee
 Author URI: http://www.bloggingbookshelf.com
 License: GPL2
-
-
-
 */
 
 
